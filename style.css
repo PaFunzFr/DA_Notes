@@ -1,10 +1,13 @@
 :root {
-    --color-main: rgba(255,255,255,0.2);
-    --color-secondary: rgba(255,255,255,0.4);
-    --color-txt-main: rgba(255,255,255,1);
-    --color-txt-secondary: rgba(255,255,255,0.6);
+    scroll-behavior: smooth;
+
+    --color-main: rgb(3, 14, 18);
+    --color-secondary: rgb(8, 33, 43);
+    --color-txt-main: rgb(6, 161, 223);
+    --color-txt-secondary: rgb(224, 173, 92);
 
     --border-radius: 2vmin;
+    --border-radius-small: 1vmin;
 
     --header-height: 80px;
     --margin: 30px;
@@ -16,11 +19,42 @@ body {
     min-height: 100vh;
     margin: 0;
     color: white;
+    font-family: "Sintony";
+}
+
+input, textarea {
+    padding: 5px;
+    margin: 0 0 10px 0;
+    resize: none;
+    border: none;
+    border-radius: var(--border-radius-small);
+}
+
+input[type="submit"] {
+    margin-top: 20px;
+    padding: 10px 30px;
+    border-radius: var(--border-radius-small);
+} 
+
+textarea {
+    height: 100%;
 }
 
 h1, h2, h3 {
-    margin: 0;
+    margin: 10px 0 15px 0;
     padding: 0;
+}
+
+h1 {
+    font-family: 'Acme';
+    font-size: 50px;
+    color: var(--color-txt-main)
+}
+h2 {
+    color: var(--color-txt-main)
+}
+h3 {
+    color: var(--color-txt-secondary)
 }
 .container {
     display: flex;
@@ -34,7 +68,9 @@ header {
     position: fixed;
     width: 100%;
     height: 80px;
-    background-color: grey;
+    background-color: var(--color-secondary);
+    filter: drop-shadow(0px 10px 10px var(--color-main));
+    border-bottom: 1px solid var(--color-main);
 }
 
 .title {
@@ -48,7 +84,7 @@ header {
 main {
     margin-top: 80px;
     flex: 1;
-    background-color: green;
+    background-color: var(--color-main);
 }
 .note-grid {
     display: grid;
@@ -61,15 +97,16 @@ main {
     flex-direction: column;
     position: sticky;
     top: calc(var(--margin) + var(--header-height));
-    height: 500px;
-    align-items: center;
-    justify-content: flex-start;
+    height: 400px;
     grid-row-start: 1;
     grid-column-start: 1;
     min-width: 200px;
-    width: 100%;
-    background-color: red;
-    padding: 15px 0;
+    width: auto;
+    background-color: var(--color-secondary);
+    padding: 15px 10px;
+    gap: 10px;
+    border-radius: var(--border-radius-small);
+    border: 1px solid var(--color-txt-main);
 }
 
 .notes-container {
@@ -77,12 +114,11 @@ main {
     flex-direction: column;
     grid-column-start: 2;
     grid-row-start: 1;
-    background-color: green;
     gap: 30px;
     margin: var(--margin) 0;
 }
 .notes {
-    background-color: black;
+    background-color: var(--color-secondary);
     border-radius: 2vmin;
     padding: 15px;
 }
@@ -93,9 +129,9 @@ main {
     height: 1px;
     background-color: grey;
     width: 100%;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 footer {
     height: 60px;
-    background-color: lightgrey;
+    background-color: var(--color-secondary);
 }
