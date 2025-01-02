@@ -1,0 +1,101 @@
+:root {
+    --color-main: rgba(255,255,255,0.2);
+    --color-secondary: rgba(255,255,255,0.4);
+    --color-txt-main: rgba(255,255,255,1);
+    --color-txt-secondary: rgba(255,255,255,0.6);
+
+    --border-radius: 2vmin;
+
+    --header-height: 80px;
+    --margin: 30px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    color: white;
+}
+
+h1, h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+.container {
+    display: flex;
+    margin: 0 auto;
+    max-width: 1000px;
+    height: 100%;
+    padding: 0 30px;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    height: 80px;
+    background-color: grey;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+}
+
+main {
+    margin-top: 80px;
+    flex: 1;
+    background-color: green;
+}
+.note-grid {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 20px;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: calc(var(--margin) + var(--header-height));
+    height: 500px;
+    align-items: center;
+    justify-content: flex-start;
+    grid-row-start: 1;
+    grid-column-start: 1;
+    min-width: 200px;
+    width: 100%;
+    background-color: red;
+    padding: 15px 0;
+}
+
+.notes-container {
+    display: flex;
+    flex-direction: column;
+    grid-column-start: 2;
+    grid-row-start: 1;
+    background-color: green;
+    gap: 30px;
+    margin: var(--margin) 0;
+}
+.notes {
+    background-color: black;
+    border-radius: 2vmin;
+    padding: 15px;
+}
+.note {
+    margin-top: 40px;
+}
+.h-line {
+    height: 1px;
+    background-color: grey;
+    width: 100%;
+    margin: 15px 0;
+}
+footer {
+    height: 60px;
+    background-color: lightgrey;
+}
