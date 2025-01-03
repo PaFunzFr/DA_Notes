@@ -23,24 +23,18 @@
     <main>
         <section class="container">
             <div class="note-grid">
-                    <form class="inputs" action="">
+                    <div class="inputs">
                         <label for="noteTitle">Note Title</label>
                         <input type="text" id="noteTitle" name="title" required>
                         <label for="noteText">Note text</label>
                         <textarea type="text" id="noteText" name="text" required></textarea>
-                        <input type="submit">
-                    </form>
+                        <button onclick="addNote()">Absenden</button>
+                    </div>
                     <!-- add notes dynamically here -->
                     <div class="notes-container">
-                        <section class="notes active">
+                        <section class="notes active" id="notesContainer">
                             <h2>Aktuell</h2>
-                            <div class="note">
-                                <h3 class="note-title">Titel 1 von Notiz</h3>
-                                <p class="note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et minima, perferendis odio nulla numquam officiis nesciunt cum repellendus fuga esse explicabo molestiae assumenda debitis odit hic fugit adipisci maiores similique incidunt eveniet laboriosam beatae animi provident inventore. Quis, fugiat reiciendis blanditiis atque rem veritatis odio dolor nobis illo, culpa sapiente.</p>
-                                <div class="h-line"></div>
-                                <button>EDIT</button>
-                                <button>X</button>
-                            </div>
+
                             <div class="note">
                                 <h3 class="note-title">Titel 1 von Notiz</h3>
                                 <p class="note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et minima, perferendis odio nulla numquam officiis nesciunt cum repellendus fuga esse explicabo molestiae assumenda debitis odit hic fugit adipisci maiores similique incidunt eveniet laboriosam beatae animi provident inventore. Quis, fugiat reiciendis blanditiis atque rem veritatis odio dolor nobis illo, culpa sapiente.</p>
@@ -91,4 +85,5 @@
 </body>
 
 <script src="./script.js"></script>
+<script src="./scripts/template.js"></script>
 </html>
