@@ -35,6 +35,11 @@ function addNote() {
 // render current notes
 function renderNotes(array1, array2, containerToRender) {
     containerToRender.innerHTML = "";
+
+  // WEITERMACHEN / NACHDENKEN ÜBER:
+  // HIER VIELLEICHT IF BEDINGUNG EINBINDEN
+  // WENN containerToRender === achivedNotes usw. => entsprechend andere Buttons rendern!
+
     for (i = array1.length -1; i > -1; i--) {
         containerToRender.innerHTML += `
                 <div class="note" id="singleNote">
