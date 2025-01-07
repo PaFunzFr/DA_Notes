@@ -21,13 +21,16 @@ let currentNotesText = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Te
 let datePosted = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Date:`)) || [];
 let archivedNotes = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Text:`)) || [];
 let archivedNotesText = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Text:`)) || [];
+let dateArchived = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Date:`)) || [];
 let deletedNotes = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Text:`)) || [];
 let deletedNotesText = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Text:`)) || [];
+let dateDeleted = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Date:`)) || [];
 
+// initialize notes
 function renderInit() {
-  renderNotes(currentNotesRef, currentNotes, currentNotesText);
-  renderNotes(archivedNotesRef, archivedNotes, archivedNotesText);
-  renderNotes(deletedNotesRef, deletedNotes, deletedNotesText);
+  renderNotes(currentNotesRef, currentNotes, currentNotesText, datePosted);
+  renderNotes(archivedNotesRef, archivedNotes, archivedNotesText, dateArchived);
+  renderNotes(deletedNotesRef, deletedNotes, deletedNotesText, dateDeleted);
 }
 
 // create new note, push to array and save to localStorage
@@ -36,28 +39,29 @@ function addNewNote() {
     currentNotes.push(noteTitle.value);
     currentNotesText.push(noteText.value);
     datePosted.push(timeStamp);
-    saveToLocalStorage(currentNotesRef, currentNotes, currentNotesText);
+    saveToLocalStorage(currentNotesRef, currentNotes, currentNotesText, datePosted);
     noteTitle.value = "";
     noteText.value = "";
     renderInit();
   }
 }
 
-function saveToLocalStorage(refContainer, title, text) {
+// save Elements to localStorage
+function saveToLocalStorage(refContainer, title, text, date) {
   localStorage.setItem(`${refContainer.id} Title:`, JSON.stringify(title));
   localStorage.setItem(`${refContainer.id} Text:`, JSON.stringify(text));
-  localStorage.setItem(`${refContainer.id} Date:`, JSON.stringify(datePosted));
+  localStorage.setItem(`${refContainer.id} Date:`, JSON.stringify(date));
 }
 
 function updateLocalStorage() {
-  saveToLocalStorage(currentNotesRef, currentNotes, currentNotesText);
-  saveToLocalStorage(archivedNotesRef, archivedNotes, archivedNotesText);
-  saveToLocalStorage(deletedNotesRef, deletedNotes, deletedNotesText);
+  saveToLocalStorage(currentNotesRef, currentNotes, currentNotesText, datePosted);
+  saveToLocalStorage(archivedNotesRef, archivedNotes, archivedNotesText, dateArchived);
+  saveToLocalStorage(deletedNotesRef, deletedNotes, deletedNotesText, dateDeleted);
 }
 // Render current notes
-function renderNotes(containerToRender, title, text) {
+function renderNotes(containerToRender, title, text, date) {
   containerToRender.innerHTML = ``;
-  noteTemplate(containerToRender, title, text, datePosted);
+  noteTemplate(containerToRender, title, text, date);
 }
 
 function noteTemplate(containerToRender, title, text, date) {
@@ -81,46 +85,49 @@ function noteTemplate(containerToRender, title, text, date) {
 
 function moveToCurrent(event, index) {
   if (event.target.className.includes("archived")) {
-    moveNote(archivedNotes, archivedNotesText, index, currentNotes, currentNotesText);
+    moveNote(archivedNotes, archivedNotesText, dateArchived, index, currentNotes, currentNotesText, datePosted);
   }
   if (event.target.className.includes("deleted")) {
-    moveNote(deletedNotes, deletedNotesText, index, currentNotes, currentNotesText)
+    moveNote(deletedNotes, deletedNotesText, dateDeleted, index, currentNotes, currentNotesText, datePosted)
   }
 }
 
 function moveToArchive(event, index) {
   if (event.target.className.includes("current")) {
-    moveNote(currentNotes, currentNotesText, index, archivedNotes, archivedNotesText);
+    moveNote(currentNotes, currentNotesText, datePosted, index, archivedNotes, archivedNotesText, dateArchived);
   }
   if (event.target.className.includes("deleted")) {
-    moveNote(deletedNotes, deletedNotesText, index, archivedNotes, archivedNotesText);
+    moveNote(deletedNotes, deletedNotesText, dateDeleted, index, archivedNotes, archivedNotesText, dateArchived);
   }
 }
 
 function moveToBin(event, index) {
   if (event.target.className.includes("current")) {
-    moveNote(currentNotes, currentNotesText, index, deletedNotes, deletedNotesText);
+    moveNote(currentNotes, currentNotesText, datePosted, index, deletedNotes, deletedNotesText, dateDeleted);
   }
   if (event.target.className.includes("archived")) {
-    moveNote(archivedNotes, archivedNotesText, index, deletedNotes, deletedNotesText);
+    moveNote(archivedNotes, archivedNotesText, dateArchived, index, deletedNotes, deletedNotesText, dateDeleted);
   }
   if (event.target.className.includes("deleted")) {
-    deleteNote(deletedNotes, deletedNotesText, index)
+    deleteNote(deletedNotes, deletedNotesText, dateDeleted, index)
   }
 }
 
-function moveNote(arrayRef1, arrayRef2, index, arrayTarget1, arrayTarget2) {
+function moveNote(arrayRef1, arrayRef2, dateRef, index, arrayTarget1, arrayTarget2, dateRefTarget) {
   let clickedNoteTitle = arrayRef1.splice(index, 1)[0];
   let clickedNoteText = arrayRef2.splice(index, 1)[0];
+  let clickedNoteDate = dateRef.splice(index, 1)[0];
   arrayTarget1.push(clickedNoteTitle);
   arrayTarget2.push(clickedNoteText);
+  dateRefTarget.push(clickedNoteDate);
   updateLocalStorage()
   renderInit();
 }
 
-function deleteNote(arrayRef1, arrayRef2, index) {
+function deleteNote(arrayRef1, arrayRef2, dateRef, index) {
   arrayRef1.splice(index, 1)[0];
   arrayRef2.splice(index, 1)[0];
+  dateRef.splice(index, 1)[0];
   updateLocalStorage()
   renderInit();
 }
@@ -146,5 +153,5 @@ function checkCurButtons(buttonRef) {
     }
   }
 }
-// Initialize the rendering process
+
 renderInit();
