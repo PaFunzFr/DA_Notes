@@ -96,7 +96,7 @@ main {
 }
 .note-grid {
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: 1fr 3fr;
     grid-template-rows: auto;
     grid-gap: 20px;
 }
@@ -121,6 +121,7 @@ main {
     display: flex;
     flex-direction: column;
     grid-column-start: 2;
+    grid-column-end: 3;
     grid-row-start: 1;
     gap: 30px;
     margin: var(--margin) 0;

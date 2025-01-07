@@ -28,28 +28,21 @@
                         <input type="text" id="noteTitle" name="title" required>
                         <label for="noteText">Note text</label>
                         <textarea type="text" id="noteText" name="text" required></textarea>
-                        <button onclick="addNewNote()">Absenden</button>
+                        <button onclick="addNewNote()">Submit</button>
                     </div>
 
                     <div class="notes-container">
                         <label for="notesContainer"><h2>Current</h2></label>
-                        <section class="notes active" id="notesContainer">
-                            <!-- add notes dynamically here -->
+                        <section class="notes active" id="current">
+                            <!-- notes dynamically added here -->
                         </section>
                         <label for="notsContainer"><h2>Archived</h2></label>
-                        <section class="notes archived" id="notesContainerArchived">
-                            <div class="note">
-                                <h3 class="note-title">A</h3>
-                                <p class="note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et minima, perferendis odio nulla numquam officiis nesciunt cum repellendus fuga esse explicabo molestiae assumenda debitis odit hic fugit adipisci maiores similique incidunt eveniet laboriosam beatae animi provident inventore. Quis, fugiat reiciendis blanditiis atque rem veritatis odio dolor nobis illo, culpa sapiente.</p>
-                            
-                            </div>
+                        <section class="notes archived" id="archived">
+                            <!-- notes dynamically added here -->
                         </section>
                         <label for="notesContainerDeleted"><h2>Deleted</h2></label>
-                        <section class="notes deleted" id="notesContainerDeleted">
-                            <div class="note">
-                                <h3 class="note-title">A</h3>
-                                <p class="note-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Et minima, perferendis odio nulla numquam officiis nesciunt cum repellendus fuga esse explicabo molestiae assumenda debitis odit hic fugit adipisci maiores similique incidunt eveniet laboriosam beatae animi provident inventore. Quis, fugiat reiciendis blanditiis atque rem veritatis odio dolor nobis illo, culpa sapiente.</p>
-                            </div>
+                        <section class="notes deleted" id="deleted">
+                            <!-- notes dynamically added here -->
                         </section>
                     </div>
             </di>
