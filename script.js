@@ -16,15 +16,15 @@ const time = `${hours}:${String(minutes).padStart(2, '0')}`;
 const timeStamp = `${day}.${month}.${year} | ${time}`;
 
 // load notes from localStorage / initialize empty arrays
-let currentNotes = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Title:`)) || [];
-let currentNotesText = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Text:`)) || [];
-let datePosted = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Date:`)) || [];
-let archivedNotes = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Text:`)) || [];
-let archivedNotesText = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Text:`)) || [];
-let dateArchived = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Date:`)) || [];
-let deletedNotes = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Text:`)) || [];
-let deletedNotesText = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Text:`)) || [];
-let dateDeleted = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Date:`)) || [];
+const currentNotes = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Title:`)) || [];
+const currentNotesText = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Text:`)) || [];
+const datePosted = JSON.parse(localStorage.getItem(`${currentNotesRef.id} Date:`)) || [];
+const archivedNotes = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Title:`)) || [];
+const archivedNotesText = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Text:`)) || [];
+const dateArchived = JSON.parse(localStorage.getItem(`${archivedNotesRef.id} Date:`)) || [];
+const deletedNotes = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Title:`)) || [];
+const deletedNotesText = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Text:`)) || [];
+const dateDeleted = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Date:`)) || [];
 
 // initialize notes
 function renderInit() {
