@@ -144,11 +144,11 @@ function checkArcButtons(buttonRef) {
 }
 
 function checkCurButtons(buttonRef) {
-  let buttonElementArc = document.getElementsByClassName(`btn-${buttonRef.id}-cur`);
-  for (let i = 0; i < buttonElementArc.length; i++) {
-    if(buttonElementArc) {
-      if (buttonElementArc[i].className.includes("current")) {
-        buttonElementArc[i].style.display = 'none';
+  let buttonElementCur = document.getElementsByClassName(`btn-${buttonRef.id}-cur`);
+  for (let i = 0; i < buttonElementCur.length; i++) {
+    if(buttonElementCur) {
+      if (buttonElementCur[i].className.includes("current")) {
+        buttonElementCur[i].style.display = 'none';
       }
     }
   }
