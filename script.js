@@ -77,8 +77,8 @@ function noteTemplate(containerToRender, title, text, date) {
             <button class="btn-${containerToRender.id}-arc" onclick="moveToArchive(event, ${i})">to archive</button>
             <button class="btn-${containerToRender.id}-del" onclick="moveToBin(event, ${i})">X</button>
         </div>`;
-        checkCurButtons(containerToRender);
-        checkArcButtons(containerToRender);
+      checkCurButtons(containerToRender);
+      checkArcButtons(containerToRender);
     }
   }
 }
