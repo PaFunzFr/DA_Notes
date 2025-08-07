@@ -11,7 +11,7 @@
     <link rel="icon" href=""><!--add favicon link-->
 </head>
 
-<body onload="renderInit(), showNotes()">
+<body onload="showNotes()">
     <header>
         <section class="container">
             <div class="title">
@@ -28,7 +28,7 @@
                         <input type="text" id="noteTitle" name="title" required>
                         <label for="noteText">Note text</label>
                         <textarea type="text" id="noteText" name="text" required></textarea>
-                        <button id="submitBtn" onclick="postNote()", disabled >Submit</button>
+                        <button id="submitBtn" onclick="createNote()", disabled >Submit</button>
                     </div>
 
                     <div class="notes-container">
@@ -36,7 +36,7 @@
                         <section class="notes active" id="current">
                             <!-- notes dynamically added here -->
                         </section>
-                        <label for="notsContainer"><h2>Archived</h2></label>
+                        <label for="notesContainer"><h2>Archived</h2></label>
                         <section class="notes archived" id="archived">
                             <!-- notes dynamically added here -->
                         </section>
