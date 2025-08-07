@@ -10,6 +10,7 @@ let notes = [];
 fetchUrl = 'http://127.0.0.1:8000/api/notes/'
 
 async function showNotes() {
+    let notes = [];
     try {
         const response = await fetch(fetchUrl);
         if (!response.ok) {
@@ -63,10 +64,38 @@ async function changeStatus(status, id) {
         });
 
         if (!patch_response.ok) {
-            throw new Error(`Fehler beim Aktualisieren der Notiz mit ID ${id}`);
+            throw new Error(`Error while loading note ${id}`);
         }
 
         console.log(`Status changed to: ${status}`);
+        showNotes();
+
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function deleteNote(id) {
+    try {
+        const response = await fetch(`${fetchUrl}${id}/`);
+        if (!response.ok) {
+            throw new Error(`Error while loading Note with ID ${id}`);
+        }
+
+        const current_note = await response.json();
+    
+        const patch_response = await fetch(`${fetchUrl}${id}/`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(current_note)
+        });
+
+        if (!patch_response.ok) {
+            throw new Error(`Error while loading note ${id}`);
+        }
+
         showNotes();
 
     } catch (error) {

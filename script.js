@@ -124,13 +124,13 @@ function moveNote(arrayRef1, arrayRef2, dateRef, index, arrayTarget1, arrayTarge
   renderInit();
 }
 
-function deleteNote(arrayRef1, arrayRef2, dateRef, index) {
-  arrayRef1.splice(index, 1)[0];
-  arrayRef2.splice(index, 1)[0];
-  dateRef.splice(index, 1)[0];
-  updateLocalStorage()
-  renderInit();
-}
+// function deleteNote(arrayRef1, arrayRef2, dateRef, index) {
+//   arrayRef1.splice(index, 1)[0];
+//   arrayRef2.splice(index, 1)[0];
+//   dateRef.splice(index, 1)[0];
+//   updateLocalStorage()
+//   renderInit();
+// }
 
 function checkArcButtons(buttonRef) {
   let buttonElementArc = document.getElementsByClassName(`btn-${buttonRef.id}-arc`);

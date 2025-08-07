@@ -5,19 +5,19 @@ function renderNoteTemplate(note) {
 
     if (note.status === 'current') {
         buttonsHtml = `
-            <button onclick="moveToArchive(event, ${note.id})">to archive</button>
-            <button onclick="moveToBin(event, ${note.id})">delete</button>
+            <button onclick="changeStatus('archived', ${note.id})">to archive</button>
+            <button onclick="changeStatus('deleted', ${note.id})">delete</button>
         `;
     } else if (note.status === 'archived') {
         buttonsHtml = `
-            <button onclick="moveToCurrent(event, ${note.id})">make current</button>
-            <button onclick="moveToBin(event, ${note.id})">delete</button>
+            <button onclick="changeStatus('current', ${note.id})">make current</button>
+            <button onclick="changeStatus('deleted', ${note.id})">delete</button>
         `;
     } else if (note.status === 'deleted') {
         buttonsHtml = `
-            <button onclick="moveToArchive(event, ${note.id})">to archive</button>
-            <button onclick="moveToCurrent(event, ${note.id})">make current</button>
-            <button onclick="deleteNote(event, ${note.id})">x</button>
+            <button onclick="changeStatus('archived', ${note.id})">to archive</button>
+            <button onclick="changeStatus('current', ${note.id})">make current</button>
+            <button onclick="deleteNote(${note.id})">x</button>
         `;
     }
 
