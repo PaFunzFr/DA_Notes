@@ -124,17 +124,19 @@ async function createNote(id) {
 
     let result = await response.json();
     console.log(result);
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteText").value = "";
     
     showNotes()
 
 }
 
-function emptyField() {
+function emptyFieldCheck() {
     return note_test_input.value.trim() === '' || note_title_input.value.trim() === '';
 }
 
 function updateButtonState() {
-    document.getElementById('submitBtn').disabled = emptyField();
+    document.getElementById('submitBtn').disabled = emptyFieldCheck();
 }
 
 note_title_input.addEventListener('input', updateButtonState);
@@ -143,3 +145,26 @@ note_test_input.addEventListener('input', updateButtonState);
 updateButtonState();
 
 
+async function deleteAssigneeFromNote(noteId, assigneeId) {
+    const response = await fetch(`${fetchUrl}${noteId}/`);
+    const current_note = await response.json();
+
+    // take all ids except those who shall be deleted
+    const updatedAssignees = current_note.assignees
+        .map(user => user.id) // array of all assignees
+        .filter(id => id !== assigneeId); // array of all assignees except the one to be deleted
+
+    const patch_response = await fetch(`${fetchUrl}${noteId}/`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ assignee_ids: updatedAssignees })
+    });
+
+    if (!patch_response.ok) {
+        throw new Error(`Error while updating note ${noteId}`);
+    }
+
+    showNotes();
+}

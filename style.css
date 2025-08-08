@@ -144,6 +144,22 @@ main {
     margin-top: 40px;
 }
 
+.note-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.assignees {
+    display: flex;
+    gap: 5px;
+}
+
+.assignees p {
+    background-color: var(--color-txt-main);
+    padding: 2px 6px;
+    border-radius: 5px;
+}
+
 .note-text {
 word-wrap: break-word;
 }

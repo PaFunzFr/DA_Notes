@@ -1,4 +1,7 @@
 
+function formatedDateTime(input) {
+    return new Date(input).toLocaleString();
+}
 function renderNoteTemplate(note) {
 
     let buttonsHtml = '';
@@ -23,11 +26,26 @@ function renderNoteTemplate(note) {
 
     return `
         <div class="note" id="singleNote-${note.id}">
-            <h3 class="note-title">${note.title}<br> 
-            <span class="date">posted on ${note.created_at}</span></h3>
+            <section class="note-header">
+                        <h3 class="note-title">${note.title}</h3>
+                        <div class="assignees">${assignees(note)}</div>
+            </section>
+
+            <span class="date">posted on ${formatedDateTime(note.created_at)}</span>
             <p class="note-text">${note.text}</p>
             <div class="h-line"></div>
             ${buttonsHtml}
         </div>
     `;
 }
+
+function assignees(note) {
+    const assignees = note.assignees;
+    let html = '';
+    if (!assignees) return;
+    for (const user of assignees) {
+        html += `<p onclick="deleteAssigneeFromNote(${note.id}, ${user.id})">${user.name.split(' ')[0]}</p>`;
+    }
+    return html;
+}
+
