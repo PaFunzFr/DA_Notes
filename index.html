@@ -11,7 +11,7 @@
     <link rel="icon" href=""><!--add favicon link-->
 </head>
 
-<body onload="showNotes()">
+<body onload="renderInit()">
     <header>
         <section class="container">
             <div class="title">
@@ -28,6 +28,10 @@
                         <input type="text" id="noteTitle" name="title" required maxlength="20">
                         <label for="noteText">Note text</label>
                         <textarea type="text" id="noteText" name="text" required></textarea>
+                        <h3>assign to:</h3>
+                        <div id="assigneesList">
+
+                        </div>
                         <button id="submitBtn" onclick="createNote()", disabled >Submit</button>
                     </div>
 

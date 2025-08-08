@@ -49,3 +49,14 @@ function assignees(note) {
     return html;
 }
 
+
+function renderAssigneeList(data) {
+    document.getElementById('assigneesList').innerHTML = ''
+    for (const user of data) {
+        document.getElementById('assigneesList').innerHTML += `
+        <label>
+            <input onclick="assignTo(this)" type="checkbox" name="${user.id}" value="${user.id}">
+            ${user.name}
+        </label>`
+    }
+}

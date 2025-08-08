@@ -30,6 +30,12 @@ input, textarea {
     border-radius: var(--border-radius-small);
 }
 
+label {
+    display: flex;
+    gap: 4px;
+    font-size: 12px;
+}
+
 input[type="submit"] {
     margin-top: 20px;
     padding: 10px 30px;

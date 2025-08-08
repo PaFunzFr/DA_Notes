@@ -27,11 +27,11 @@ const deletedNotesText = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} 
 const dateDeleted = JSON.parse(localStorage.getItem(`${deletedNotesRef.id} Date:`)) || [];
 
 // initialize notes
-function renderInit() {
-  renderNotes(currentNotesRef, currentNotes, currentNotesText, datePosted);
-  renderNotes(archivedNotesRef, archivedNotes, archivedNotesText, dateArchived);
-  renderNotes(deletedNotesRef, deletedNotes, deletedNotesText, dateDeleted);
-}
+// function renderInit() {
+//   renderNotes(currentNotesRef, currentNotes, currentNotesText, datePosted);
+//   renderNotes(archivedNotesRef, archivedNotes, archivedNotesText, dateArchived);
+//   renderNotes(deletedNotesRef, deletedNotes, deletedNotesText, dateDeleted);
+// }
 
 // create new note, push to array and save to localStorage
 function addNewNote() {
@@ -154,4 +154,4 @@ function checkCurButtons(buttonRef) {
   }
 }
 
-renderInit();
+// renderInit();

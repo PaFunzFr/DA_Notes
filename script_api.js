@@ -4,10 +4,13 @@ const note_title_input = document.getElementById("noteTitle");
 const note_test_input = document.getElementById("noteText");
 const status_container = ['current', 'archived', 'deleted'];
 
-let notes = [];
-
-
 fetchUrl = 'http://127.0.0.1:8000/api/notes/'
+fetchUrlAssignees = 'http://127.0.0.1:8000/api/assignees/'
+
+function renderInit() {
+    showNotes();
+    showAssignees();
+}
 
 async function showNotes() {
     let notes = [];
@@ -21,7 +24,26 @@ async function showNotes() {
             notes.push(result)
         })
         renderNotesNew(notes)
-        console.log(notes);
+        // console.log(notes);
+
+        
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function showAssignees() {
+    let assignees = [];
+    try {
+        const response = await fetch(fetchUrlAssignees);
+        if (!response.ok) {
+            throw new Error(`Response status: ${response.status}`);
+        }
+        const result = await response.json();
+        result.forEach((result) => {
+            assignees.push(result)
+        })
+        renderAssigneeList(assignees)
 
         
     } catch (error) {
@@ -67,7 +89,7 @@ async function changeStatus(status, id) {
             throw new Error(`Error while loading note ${id}`);
         }
 
-        console.log(`Status changed to: ${status}`);
+        // console.log(`Status changed to: ${status}`);
         showNotes();
 
     } catch (error) {
@@ -106,7 +128,8 @@ async function deleteNote(id) {
 async function createNote(id) {
     const data = { 
         "title": note_title_input.value.trim(),
-        "text": note_test_input.value.trim()
+        "text": note_test_input.value.trim(),
+        "assignee_ids": assigned_names
     };
 
     if (data.text.trim() == 0 || data.title.trim() == 0) {
@@ -122,13 +145,16 @@ async function createNote(id) {
         body: JSON.stringify(data) // data that is posted
     });
 
-    let result = await response.json();
-    console.log(result);
-    document.getElementById("noteTitle").value = "";
-    document.getElementById("noteText").value = "";
-    
+    await response.json();
+    resetForm() 
     showNotes()
 
+}
+
+function resetForm() {
+    document.getElementById("noteTitle").value = "";
+    document.getElementById("noteText").value = "";
+    uncheckAllCheckboxes();
 }
 
 function emptyFieldCheck() {
@@ -168,3 +194,30 @@ async function deleteAssigneeFromNote(noteId, assigneeId) {
 
     showNotes();
 }
+
+assigned_names = []
+
+function assignTo(checkbox) {
+    const id = Number(checkbox.value);
+    if (checkbox.checked) {
+        if (!assigned_names.includes(id)) {
+            assigned_names.push(id);
+        }
+    } else {
+        const index = assigned_names.indexOf(id);
+        if (index > -1) {
+            assigned_names.splice(index, 1);
+        }
+    }
+    console.log(assigned_names);
+    
+}
+
+function uncheckAllCheckboxes() {
+    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+}
+
+renderInit();
